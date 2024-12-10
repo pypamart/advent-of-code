@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "aoc"
+version = "0.1.0"
+description = "This repository contains my personal solutions to the Advent of Code challenges. Advent of Code is an annual event that provides daily programming puzzles for a variety of skill levels. It's a great way to practice coding, problem-solving, and algorithmic thinking."
+authors = ["Pierre-Yves PAMART <pypamart@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+pytest = "^8.3.4"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
