@@ -12,6 +12,25 @@ This repository contains my personal solutions to the Advent of Code challenges.
 - Open the folder for the specific day to see the puzzle description and my solution.
 - Feel free to review, run, and modify the code as you see fit.
 
+## Running the Solutions
+- Each solution is designed to be run from the command line.
+- To run a solution launch the following command in the terminal: 
+```bash
+python solveaoc.py run <year> <day> <part>
+```
+for example for the first part of the first day of 2024:
+```bash
+python solveaoc.py run 2024 1 1
+```
+- To run the tests for a solution, use the following command:
+```bash
+python solveaoc.py test <year> <day>
+```
+for example for the tests of the first day of 2024:
+```bash
+python solveaoc.py test 2024 1
+```
+
 ## Technologies Used
 - The solutions are implemented in Python and Rust.
 - Each solution is designed to be efficient and easy to understand.
