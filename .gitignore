@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 
 __trash__/
+.DS_store
