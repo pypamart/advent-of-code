@@ -32,7 +32,7 @@ def test_solution(year, day):
 
 def solve_advent_problem(year, day, part):
     try:
-        module_name = f"aoc.year_{year}.day_{day:02d}.part{part}"
+        module_name = f"aoc.year_{year}.day_{day:02d}.part{part}_solver"
         print(module_name)
         module = importlib.import_module(module_name)
         module.solve()
