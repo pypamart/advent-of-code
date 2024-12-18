@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from aoc.year_2024.day_01.part1 import solve as solve_part1
-from aoc.year_2024.day_01.part2 import solve as solve_part2
+from aoc.year_2024.day_01.part1_solver import solve as solve_part1
+from aoc.year_2024.day_01.part2_solver import solve as solve_part2
 
 TEST_FILE_PATH = Path(__file__).parent / "resources" / "lists_test.txt"
 
