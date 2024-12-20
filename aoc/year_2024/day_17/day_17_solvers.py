@@ -173,151 +173,44 @@ if __name__ == "__main__":
     # runner.execute()
     # output = runner.dump_output()
     # print("Part 1: ", ",".join(map(str, output)))
-   
-   
-   
-    # value = 100000000000
-    # delta = 10000000000
-    # instructions = [2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0]
-    # while True:
-    #     runner = ProgramRunner(value, 0, 0)
-    #     runner.load_program([2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0])
-    #     runner.execute()
-    #     output = runner.dump_output()
-    #     print(output)
-    #     if int("".join(map(str, output))) == int("".join(map(str, instructions))):
-    #         print("Part 2: ", value)
-    #         break
-    #     # elif int("".join(output)) > int("".join(instructions)):
-    #     #     value -= delta
-    #     #     delta //= 2
-    #     # else:
-    #     #     value += delta
-    #     #     delta //= 2
        
-    #     # Dichotomie
-    #     elif int("".join(map(str, output))) < int("".join(map(str, instructions))):
-    #         value += delta
-       
-    # Part II
-    # instructions = [2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0]
-    # registry_a = 0
-    # registry_b = 8
-    # n = 5
-   
-    # for item in reversed(instructions):
-    #    #  5,5 -> Affiche Registre B modulo 8 reverse :
-    #    registry_b = registry_b * 8 * n + 5
-    #    # 0,3 -> A = A // 3 ** 2 = A // 9
-    #    registry_a = registry_a // (3 ** 2) + 0
-   
- 
-
-           
-    # A = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-   
-    # Ax * 9 + [range]
- 
-    # for value in range(47906343092224, 47910079954944):
-    #     runner = ProgramRunner(value, 0, 0)
-    #     runner.load_program([2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0])
-    #     runner.execute()
-    #     output = runner.dump_output()
-    #     if output == [2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0]:
-    #         print(value)
-           
-    # for value in range(1461985568, 1480260387):
-    #     runner = ProgramRunner(value, 0, 0)
-    #     runner.load_program([2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0])
-    #     runner.execute()
-    #     output = runner.dump_output()
-    #     if output == [5,4,4,1,7,0,3,5,5,3,0]:
-    #         print(value)
-   
-   
-    # bin_value = ""
-    # program =  [2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0]
-    # for i in range(1, len(program) + 1):
-    #     print("Search candidate for",  program[-i:])
-    #     for suffix in ["000", "001", "010", "011", "100", "101", "111"]:
-    #         value = int(bin_value + suffix, 2)
-    #         runner = ProgramRunner(value, 0, 0)
-    #         runner.load_program([2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0])
-    #         runner.execute()
-    #         output = runner.dump_output()
-    #         print(bin_value + suffix)
-    #         print(output)
-    #         if output == program[-i:]:
-    #             bin_value = bin_value + suffix
-    #             print("Matched:", value)
-    #             print(bin_value)
-               
+    # Part II               
     def binary_string_to_int(binary_str: str) -> int:
         return sum(int(bit) * (2 ** pos) for pos, bit in enumerate(reversed(binary_str)))
-               
-    # bin_value = ""    
-    # program =  [2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0]
-    # for i in range(1, len(program) + 1):
-    #     print("Search candidate for",  program[-i:])
-    #     for suffix in ["000", "001", "010", "011", "100", "101", "111"]:
-    #         value = binary_string_to_int(bin_value + suffix)
-    #         # print(bin_value + suffix)
-    #         # print(value)
-    #         runner = ProgramRunner(value, 0, 0)
-    #         runner.load_program(program)
-    #         runner.execute()
-    #         output = runner.dump_output()
-    #         # print(bin_value + suffix)
-    #         # print(output)
-    #         if output == program[-i:]:
-    #             bin_value = bin_value + suffix
-    #             print("Matched:", value)
-    #             print(bin_value)
-               
-    #     bin_value = ""
    
-    # from itertools import product
-    # patterns = ["000", "001", "010", "011", "100", "101", "111"]
-    # program =  [2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0]
-    # prefix = "001010111001001000010000100"
-   
-    # for number in product(patterns, repeat=3):
-    #     text = prefix + "".join(number)
-    #     value = binary_string_to_int(text)
-    #     runner = ProgramRunner(value, 0, 0)
-    #     runner.load_program(program)
-    #     runner.execute()
-    #     output = runner.dump_output()
-    #     print(output)
- 
-    #     if output == program[4:]:
-    #         print("Matched:", value)
-    #         print(text)
    
     def base_n_string_to_int(n, binary_str: str) -> int:
         return sum(int(bit) * (n ** pos) for pos, bit in enumerate(reversed(binary_str)))
    
-    from itertools import product
-    txtv = ""
-    prefix = ""    
+    
+    def find_candidates(program: list[int], pattern, bin_value: str) -> list[str]:
+        candidates = []
+        for suffix in ["000", "001", "010", "011", "100", "101", "110", "111"]:
+        # for suffix in ["0", "1", "2", "3", "4", "5", "6", "7"]:
+            value = binary_string_to_int(bin_value + suffix)
+            # value = base_n_string_to_int(8, bin_value + suffix)
+            runner = ProgramRunner(value, 0, 0)
+            runner.load_program(program)
+            runner.execute()
+            output = runner.dump_output()
+            # print(output, pattern)
+            if output == pattern:
+                candidates.append(suffix)
+        return candidates
+    
+    bin_value = [""]    
     program =  [2,4,1,6,7,5,4,4,1,7,0,3,5,5,3,0]
-    patterns = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    # program = [0,3,5,4,3,0]
+    
     for i in range(1, len(program) + 1):
-        print("Search candidate for",  program[-i:])
-        is_matched = False
-        repeat = 1
-        while not is_matched:
-            for number in product(patterns, repeat=repeat):
-                text = txtv + "".join(number)
-                value = base_n_string_to_int(8, text)
-                runner = ProgramRunner(value, 0, 0)
-                runner.load_program(program)
-                runner.execute()
-                output = runner.dump_output()
-                if output == program[-i:]:
-                    txtv = text
-                    print("Matched:", value)
-                    print(txtv)
-                    is_matched = True
-                    break
-                repeat += 1
+        bin_value_new = []
+        print("Search candidates for",  program[-i:])
+        for value in bin_value:
+            candidates = find_candidates(program, program[-i:], value)
+            for candidate in candidates:
+                bin_value_new.append(value + candidate)
+        bin_value = [*bin_value_new]
+        
+        int_values = [binary_string_to_int(value) for value in bin_value]
+        # int_values = [base_n_string_to_int(8, value) for value in bin_value]
+        print("\n".join(map(str,int_values)))
